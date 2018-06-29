@@ -16,3 +16,8 @@
 - `fashion_stacked.py`: main file to define model
 - `train_script.py`: train script
 - `test_script.py`: test script
+
+## Environment
+Docker is recommended:
+- pull image from Docker Hub\
+`docker pull yd8534976/tf-aiden`
