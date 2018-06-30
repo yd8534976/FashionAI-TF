@@ -1,7 +1,7 @@
 # FashionAI Global Challenge: Key points Detection
 - Code for [FashionAI KeyPoint Detection](https://tianchi.aliyun.com/competition/introduction.htm?spm=5176.100068.5678.1.4ccc289bCzDJXu&raceId=231648&_lang=en_US)
 - Score of this code : 4.25%
-- Team rank 58/2322 at 1st round competition and 32/2322 at 2nd round competition
+- Team ranked 32/2322
 - Mainly base on [Cascaded Pyramid Network for Multi-Person Pose Estimation](https://arxiv.org/abs/1711.07319).
 
 ## Folder Structure
@@ -17,7 +17,20 @@
 - `train_script.py`: train script
 - `test_script.py`: test script
 
-## Environment
-Docker is recommended:
+## Prerequisites
+### Docker is recommended:
+- nvidia-docker
 - pull image from Docker Hub\
 `docker pull yd8534976/tf-aiden`
+
+### Alternatively:
+- python
+- tensorflow-gpu (>= 1.4)
+- numpy
+- pandas
+- opencv-python
+
+### Pre-trained ResNet50 model
+ - You can download pre-trained models from tensorflow offical
+  [slim model zoo](https://github.com/tensorflow/models/tree/master/research/slim).
+ - Put checkpoint files into model/ .
