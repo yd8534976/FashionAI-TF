@@ -36,3 +36,15 @@
  - You can download pre-trained models from tensorflow offical
   [slim model zoo](https://github.com/tensorflow/models/tree/master/research/slim).
  - Put checkpoint files into model/ .
+
+### Demo
+- blouse
+![demo1](demos/demo1.jpg)
+- skirt
+![demo2](demos/demo2.jpg)
+- outwear
+![demo3](demos/demo3.jpg)
+- dress
+![demo4](demos/demo4.jpg)
+- trousers
+![demo5](demos/demo5.jpg)
