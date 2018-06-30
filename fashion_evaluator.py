@@ -1,4 +1,4 @@
-### 按照阿里提的标准计算错误率
+# haowei
 import numpy as np
 import cv2
 GT_FILE = 'test_b/submission_0421_1.csv'  ### ground-truth
@@ -9,15 +9,16 @@ def read_data(filename):
     input_file = open(filename, 'r')
     data_dict={}
 
-    i= 0
+    i = 0
     for line in input_file:
-        if i==0: ### drop  the header
-            i=1
+        if i == 0: ### drop  the header
+            i = 1
             continue
         line = line.strip()
         line = line.split(',')
         name = line[0]
         type = line[1]
+
         def fn(x):
             c = x.split('_')
             return list(map(int,c[:]))
@@ -51,14 +52,14 @@ def calculate_norm_distance_mat(gt_data, pred_data,norm):
     samples = len(gt_data.keys())
     dis_mat = np.zeros((samples,24))
     n=0
-    n_every_joints=np.zeros(24)
+    n_every_joints = np.zeros(24)
     for i,name in enumerate(gt_data.keys()):
         for j in range(24):
             # if gt_data[name]['joints'][j][2] != -1:
             if gt_data[name]['joints'][j][2] == 1:## only visible
 
-                n+=1
-                n_every_joints[j]+=1
+                n += 1
+                n_every_joints[j] += 1
                 gt_pts = gt_data[name]['joints'][j]
                 pre_pts = pred_data[name]['joints'][j]
                 d =np.sqrt((gt_pts[0]-pre_pts[0])*(gt_pts[0]-pre_pts[0]) + (gt_pts[1]-pre_pts[1])*(gt_pts[1]-pre_pts[1]) )
@@ -66,17 +67,17 @@ def calculate_norm_distance_mat(gt_data, pred_data,norm):
     return  dis_mat, n, n_every_joints
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     gt_data = read_data(GT_FILE)
     pre_data = read_data(PRED_FILE)
     samples = len(gt_data.keys())
     norm = calculate_norm(gt_data)
-    norm_dis,N,n_every_joints = calculate_norm_distance_mat(gt_data, pre_data,norm)
+    norm_dis,N,n_every_joints = calculate_norm_distance_mat(gt_data, pre_data, norm)
     print(norm_dis.shape)
     err = np.sum(norm_dis)/N
     print('err: ', err*100)
 
     err_joints = np.sum(norm_dis,axis=0)
-    err_joints = np.divide(err_joints,n_every_joints)*100
+    err_joints = np.divide(err_joints, n_every_joints) * 100
     for i,v in enumerate(err_joints):
         print('joints '+str(i)+' mean err: ', v)

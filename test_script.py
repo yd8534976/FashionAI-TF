@@ -10,6 +10,5 @@ if __name__ == '__main__':
     i = datetime.datetime.now()
     output_dir = "outputs/yrd{:02}{:02}_final.csv".format(i.month, i.day)
     fashionAI.test(model_dir='model/ai0528_stack/fashionai.ckpt',
-                   data_dir='final',
+                   data_dir='test_set',
                    output_dir=output_dir)
-

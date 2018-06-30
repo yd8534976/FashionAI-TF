@@ -245,7 +245,8 @@ class FashionAI(object):
         """
         train
         :param max_epochs: int
-        :param model_dir: str, continue training from pre-trained checkpoints
+        :param model_dir: str, continue training from pre-trained checkpoints,
+                          if None, training from ImageNet checkpoints
         :param dataset_dir: str
         :param batch_size: int
         :param write_summary: boolean
