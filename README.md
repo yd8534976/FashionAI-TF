@@ -1,5 +1,7 @@
-# FashionAI Global Challenge: Key points Detection
-- Code for [FashionAI KeyPoint Detection](https://tianchi.aliyun.com/competition/introduction.htm?spm=5176.100068.5678.1.4ccc289bCzDJXu&raceId=231648&_lang=en_US)
+# FashionAI Global Challenge: Key points Detection of Apparel
+- Introduction: [FashionAI Global Challenge](https://tianchi.aliyun.com/markets/tianchi/FashionAIeng?spm=a2c22.11190735.991137.10.329f6d83T8thsG&_lang=en_US)
+- Description: [KeyPoints Detection of Apparel](https://tianchi.aliyun.com/competition/introduction.htm?spm=5176.100068.5678.1.4ccc289bCzDJXu&raceId=231648&_lang=en_US)
+- [Leaderboard](https://tianchi.aliyun.com/competition/rankingList.htm?spm=5176.100067.5678.4.4a792743OjBoQ3&raceId=231648)
 - Score of this code : 4.25%
 - Team ranked 32/2322
 - Mainly base on [Cascaded Pyramid Network for Multi-Person Pose Estimation](https://arxiv.org/abs/1711.07319).
