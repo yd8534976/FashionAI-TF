@@ -17,6 +17,7 @@
 - `outputs` : store predicted files
 - `summary`: store files for tensorboard
 - `train_set`: place training data here
+- `test_set`: place test data here
 - `fashion_evaluator.py`: evaluator script
 - `fashion_generator.py`: data generator
 - `fashion_helper.py`: store a bunch of helper functions

@@ -1,13 +1,29 @@
 from fashion_stacked import FashionAI
 import os
+import argparse
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"
+
+def main(a):
+    os.environ["CUDA_VISIBLE_DEVICES"] = a.gpu
+
+    fashionAI = FashionAI()
+    fashionAI.train(max_epochs=a.max_epochs,
+                    batch_size=a.batch_size,
+                    write_summary=a.write_summary,
+                    freq_summary=a.freq_summary,
+                    dataset_dir=a.dataset_dir,
+                    model_dir=a.model_dir,
+                    )
+
 
 if __name__ == '__main__':
-    fashionAI = FashionAI()
-    fashionAI.train(max_epochs=20,
-                    batch_size=10,
-                    write_summary=True,
-                    freq_summary=10,
-                    model_dir=None,
-                    )
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--dataset_dir", default='train_set')
+    parser.add_argument("--model_dir", default='model/ai0708_cpn/fashionai.ckpt')
+    parser.add_argument("max_epochs", default=20)
+    parser.add_argument("batch_size", default=5)
+    parser.add_argument("write_summary", default=True)
+    parser.add_argument("freq_summary", default=20)
+    parser.add_argument("--gpu", default='0')
+    a = parser.parse_args()
+    main(a)

@@ -186,8 +186,9 @@ class FashionAI(object):
         starter_learning_rate = self.starter_learning_rate
         learning_rate = tf.train.exponential_decay(starter_learning_rate, self.global_step,
                                                    20000, 0.9, staircase=True)
-        self.train_op = tf.train.AdamOptimizer(learning_rate).minimize(self.loss,
-                                                                       global_step=self.global_step)
+        solver = tf.train.AdamOptimizer(learning_rate)
+        with tf.control_dependencies(tf.get_collection(tf.GraphKeys.UPDATE_OPS)):
+            solver.minimize(self.loss, global_step=self.global_step)
 
     def _build_model(self):
         self._build_input()
