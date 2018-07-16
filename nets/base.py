@@ -1,19 +1,19 @@
-class BaseNet(object):
+class BaseModel(object):
 
     def __init__(self):
-        return
+        pass
 
-    def input(self):
+    def build_inputs(self):
         raise NotImplementedError
 
-    def inference(self):
+    def build_inference(self):
         raise NotImplementedError
 
-    def loss(self):
+    def build_loss(self):
         raise NotImplementedError
 
-    def solver(self):
+    def build_solver(self):
         raise NotImplementedError
 
-    def train(self):
+    def train_op(self):
         raise NotImplementedError
