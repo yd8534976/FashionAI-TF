@@ -6,7 +6,7 @@ import argparse
 def main(a):
     os.environ["CUDA_VISIBLE_DEVICES"] = a.gpu
 
-    fashionAI = FashionAI()
+    fashionAI = FashionAI(is_training=True)
     fashionAI.train(max_epochs=a.max_epochs,
                     batch_size=a.batch_size,
                     write_summary=a.write_summary,
@@ -19,7 +19,7 @@ def main(a):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset_dir", default='train_set')
-    parser.add_argument("--model_dir", default='model/ai0708_cpn/fashionai.ckpt')
+    parser.add_argument("--model_dir", default=None)
     parser.add_argument("max_epochs", default=20)
     parser.add_argument("batch_size", default=5)
     parser.add_argument("write_summary", default=True)
