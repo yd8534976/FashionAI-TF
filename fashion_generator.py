@@ -34,34 +34,23 @@ class DataLoader(object):
             label = self.labels[i]
             img = cv2.imread(img_path)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-            # img = cv2.resize(img, (512, 512))
             # padding
             h, w, _ = img.shape
             img = cv2.copyMakeBorder(img, 0, 512 - h, 0, 512 - w, cv2.BORDER_CONSTANT)
             heatmap, num_visible = label_to_heatmap(label, img)
-            # heatmap = cv2.resize(heatmap, (512, 512))
 
             img = 2 * (img / 255.0) - 1.0
             if self.mode == 'train':
                 img_flip, heatmap_flip = self.flip(img, heatmap)
-                yield img_path, num_visible, img_flip, heatmap_flip
+                yield img_path, img_flip, heatmap_flip
                 img_rotate, heatmap_rotate = self.rotate(img, heatmap)
-                yield img_path, num_visible, img_rotate, heatmap_rotate
-                # heatmap_hard = self.hard_points(heatmap)
-                # yield img_path, num_visible, img, heatmap_hard
+                yield img_path, img_rotate, heatmap_rotate
 
-            yield img_path, num_visible, img, heatmap
+            yield img_path, img, heatmap
             if self.mode == 'test':
                 img = img[:, ::-1, :]
-                yield img_path, num_visible, img, heatmap
+                yield img_path, img, heatmap
             i += 1
-
-    @staticmethod
-    def hard_points(heatmap):
-        new_heatmap = np.zeros_like(heatmap)
-        idx_hard_points = [5, 6, 7, 8, 19]
-        new_heatmap[:, :, idx_hard_points] = heatmap[:, :, idx_hard_points]
-        return new_heatmap
 
     @staticmethod
     def rotate(img, heatmap):
